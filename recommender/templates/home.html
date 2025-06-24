@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Recommendation</title>
+    {% load static %}
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <div class="container">
+        <header>
+            <h1>Product Recommendation System</h1>
+        </header>
+
+        <section class="form-section">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="product_name" placeholder="Enter product name" required>
+                <button type="submit">Recommend</button>
+            </form>
+
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </section>
+
+        {% if recommendations %}
+        <section class="results-section">
+            <h2>Recommendations for "{{ product_name }}":</h2>
+            <ul class="recommendation-list">
+                {% for rec in recommendations %}
+                <li class="recommendation-item">
+                    <img src="{{ rec.img_link }}" alt="{{ rec.product_name }}" class="product-image">
+                    <div class="product-info">
+                        <strong class="product-name">{{ rec.product_name }}</strong><br>
+                        <span class="product-price">₹{{ rec.actual_price }}</span> |
+                        <span class="product-rating">Rating: {{ rec.rating }}</span><br>
+                        <a href="{{ rec.product_link }}" target="_blank" class="view-link">View Product</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    </div>
+</body>
+</html>
