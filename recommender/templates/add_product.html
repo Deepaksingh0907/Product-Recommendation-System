@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/addpro.css' %}">
+</head>
+<body>
+<div class="add-product-section">
+    <h2>Add New Product</h2>
+    {% if success %}
+        <div class="alert alert-success">Product added successfully!</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="product_id" placeholder="Product ID" required class="form-control">
+        <input type="text" name="product_name" placeholder="Product Name" required class="form-control">
+        <input type="text" name="category" placeholder="Category" required class="form-control">
+        <input type="text" name="actual_price" placeholder="Actual Price" required class="form-control">
+        <input type="number" step="0.1" name="rating" placeholder="Rating" required class="form-control">
+        <input type="text" name="about_product" placeholder="About Product" required class="form-control">
+        <input type="text" name="img_link" placeholder="Image Link" required class="form-control">
+        <input type="text" name="product_link" placeholder="Product Link" required class="form-control">
+        <input type="text" name="combined" placeholder="Combined" required class="form-control">
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+</div>
+</body>
+</html>

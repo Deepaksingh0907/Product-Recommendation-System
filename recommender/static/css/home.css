@@ -1,0 +1,135 @@
+/* Full-screen background image */
+body {
+    background: url("/static/img/home.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+}
+
+/* Overlay for subtle blur behind everything */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+}
+
+/* Header */
+header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+/* Glassmorphism Form Section */
+.form-section {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.form-section:hover {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+/* Form Inputs and Buttons */
+.form-section input,
+.form-section select {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 8px;
+    color: #343a40;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.form-section input:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(13,110,253,0.3);
+}
+
+/* Red buttons for Show Product and Add Product */
+.form-section button.btn-primary,
+.form-section a.add-product-btn {
+    background-color: #dc3545;   /* Bootstrap red */
+    border-color: #dc3545;
+    color: #fff;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.form-section button.btn-primary:hover,
+.form-section a.add-product-btn:hover {
+    background-color: #b02a37;  /* darker red on hover */
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* Cards Glass Style */
+.results-section .card {
+    border: none;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+}
+
+.results-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+    max-height: 180px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+/* Star ratings */
+.card .stars {
+    color: #ffc107;
+}
+
+/* No products message */
+.no-products {
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-section input {
+        width: 90%;
+    }
+    .card {
+        width: 90% !important;
+    }
+}

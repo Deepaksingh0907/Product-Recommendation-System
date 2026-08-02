@@ -15,7 +15,8 @@ SECRET_KEY = 'django-insecure-wqa2er4lg3_p03t=du)18of6qbp9+9kx0@wa5ceys)ke#(ihok
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', 'testserver']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
 
 
 # Application definition
@@ -104,12 +105,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # This tells Django where to look for additional static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'recommender', 'static'),
+    os.path.join(BASE_DIR, 'recommender/static'),
 ]
 
 
@@ -117,3 +119,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+# Media files settings
