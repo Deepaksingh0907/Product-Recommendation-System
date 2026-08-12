@@ -10,6 +10,13 @@ from .services.recommendation_service import recommendation_service
 def home(request):
     if request.method == "POST":
         product_name = (request.POST.get("product_name") or "").strip()
+        if not product_name:
+            return render(
+                request,
+                "home.html",
+                {"error": "Please enter a product name."},
+            )
+
         product_list = recommendation_service.recommend(
             product_name=product_name,
             min_price=request.POST.get("min_price"),
