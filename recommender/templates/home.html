@@ -9,23 +9,20 @@
 </head>
 <body>
     <div class="container py-4">
-
-        <!-- Header -->
         <header class="text-center mb-4">
             <h2>Product Recommendation System</h2>
+            <p>Enter a product to find similar products using TF-IDF and cosine similarity.</p>
         </header>
 
-        <!-- Logout Button -->
         <div class="text-end mb-3">
             <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
         </div>
 
-        <!-- Filter / Add Product Form -->
         <section class="form-section mb-4">
             <form method="POST" class="text-center">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <input type="text" name="product_name" placeholder="Enter product name" required>
+                    <input type="text" name="product_name" placeholder="Enter a product name" required>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-2 mb-2">
@@ -38,7 +35,7 @@
                         <input type="number" name="min_rating" step="0.1" max="5" placeholder="Min Rating">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-2">Show Product</button>
+                <button type="submit" class="btn btn-primary mt-2">Recommend Products</button>
                 <a href="{% url 'add_product' %}" class="btn btn-success mt-2 ms-2 add-product-btn">Add Product</a>
             </form>
 
@@ -47,10 +44,9 @@
             {% endif %}
         </section>
 
-        <!-- Product Listing -->
         {% if product_list %}
         <section class="results-section">
-            <h4 class="text-center mb-4">Products matching "{{ product_name }}":</h4>
+            <h4 class="text-center mb-4">Recommended products similar to "{{ product_name }}"</h4>
             <div class="d-flex flex-wrap justify-content-center gap-4">
                 {% for rec in product_list %}
                 <div class="card p-2 shadow-sm" style="width: 16rem;">
@@ -59,16 +55,13 @@
                         <h6 class="card-title">{{ rec.product_name }}</h6>
                         <p class="card-text mb-1">Price: ₹{{ rec.actual_price }}</p>
                         <p class="card-text mb-2">Rating: {{ rec.rating }}/5</p>
-                        <a href="{{ rec.product_link }}" target="_blank" class="btn btn-sm btn-outline-primary">View Product</a>
+                        <a href="{{ rec.product_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">View Product</a>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </section>
-        {% else %}
-            <p class="no-products">No products found matching your search.</p>
         {% endif %}
-
     </div>
 </body>
 </html>
