@@ -1,2 +1,4 @@
-saved_modules/
 .venv/
+__pycache__/
+*.pyc
+saved_models/
